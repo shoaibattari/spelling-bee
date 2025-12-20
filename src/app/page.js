@@ -1,65 +1,156 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { categories, spellingBeeData } from "./constant/data";
+
+export default function LandingPage() {
+  const router = useRouter();
+  const [search, setSearch] = useState("");
+
+  const totalStudents = spellingBeeData.length;
+
+  const categoryCount = (categoryName) =>
+    spellingBeeData.filter((s) => s.category === categoryName).length;
+
+  // ----------- Animated Counts with SAME SPEED -----------
+  const [animatedTotal, setAnimatedTotal] = useState(0);
+  const [animatedCategoryCounts, setAnimatedCategoryCounts] = useState({});
+
+  useEffect(() => {
+    const duration = 1500; // total animation time in ms
+    const fps = 30; // updates per second
+    const intervalTime = Math.floor(duration / fps);
+    let currentStep = 0;
+    const steps = fps;
+
+    const categoryTargets = {};
+    categories.forEach((cat) => {
+      categoryTargets[cat.slug] = categoryCount(cat.name);
+    });
+
+    const totalTarget = totalStudents;
+
+    const interval = setInterval(() => {
+      currentStep++;
+      const progress = currentStep / steps;
+
+      setAnimatedTotal(Math.round(totalTarget * progress));
+
+      const newCounts = {};
+      categories.forEach((cat) => {
+        newCounts[cat.slug] = Math.round(categoryTargets[cat.slug] * progress);
+      });
+      setAnimatedCategoryCounts(newCounts);
+
+      if (currentStep >= steps) clearInterval(interval);
+    }, intervalTime);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSearch = () => {
+    if (!search.trim()) return;
+    router.push(`/all?search=${encodeURIComponent(search)}`);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen bg-linear-to-br from-yellow-50 to-white">
+      {/* HERO */}
+      <section className="max-w-6xl mx-auto px-6 py-20 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold">
+          <span className="animate-bee"> 🐝</span> Spelling Bee Competition
+        </h1>
+        <p className="mt-4 text-xl text-gray-600">
+          Search students, filter by category & download entry passes
+        </p>
+
+        {/* SEARCH */}
+        <div className="mt-8 max-w-xl mx-auto flex gap-2">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by name, roll no, school, area..."
+            className="flex-1 p-3 border rounded-xl"
+          />
+          <button
+            onClick={handleSearch}
+            className="px-6 bg-yellow-500 text-white rounded-xl cursor-pointer hover:bg-yellow-600 transition duration-300"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Search
+          </button>
         </div>
-      </main>
+
+        {/* STATS */}
+        <div className="mt-8 flex justify-center gap-6 flex-wrap">
+          <div className="px-6 py-4 w-full bg-yellow-100 rounded-xl shadow hover:shadow-lg transition duration-300">
+            <p className="text-sm text-gray-700">Total Registrations</p>
+            <p className="text-2xl font-bold text-yellow-800">
+              {animatedTotal}
+            </p>
+          </div>
+
+          {categories.map((cat) => (
+            <div
+              key={cat.slug}
+              className="px-6 py-4 rounded-xl shadow text-center transition duration-300
+                         bg-yellow-200 hover:bg-yellow-300 hover:text-yellow-900 hover:shadow-lg"
+            >
+              <p className="text-sm font-semibold">{cat.name}</p>
+              <p className="text-2xl font-bold">
+                {animatedCategoryCounts[cat.slug] || 0}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-10 flex justify-center gap-4 flex-wrap">
+          <Link
+            href="/all"
+            className="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 cursor-pointer text-white rounded-xl transition"
+          >
+            View All Students
+          </Link>
+
+          <Link
+            href={`/${categories[0].slug}`}
+            className="px-6 py-3 border border-yellow-500 rounded-xl hover:bg-yellow-500 hover:text-white transition cursor-pointer"
+          >
+            Browse Categories
+          </Link>
+        </div>
+      </section>
+
+      {/* CATEGORY GRID */}
+      <section className="max-w-6xl mx-auto px-6 pb-20">
+        <h2 className="text-2xl font-bold text-center mb-8">
+          Competition Categories
+        </h2>
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {categories.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={`/${cat.slug}`}
+              className="p-6 rounded-2xl border shadow hover:shadow-lg
+                         bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600
+                         transition text-center text-white"
+            >
+              <h3 className="text-lg font-semibold">{cat.name}</h3>
+              <p className="text-xl font-bold mt-2">
+                {animatedCategoryCounts[cat.slug] || 0} Students
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t py-6 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} Spelling Bee Competition
+      </footer>
     </div>
   );
 }
