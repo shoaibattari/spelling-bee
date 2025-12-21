@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { categories, spellingBeeData } from "./constant/data";
+import Image from "next/image";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -67,16 +68,16 @@ export default function LandingPage() {
         </p>
 
         {/* SEARCH */}
-        <div className="mt-8 max-w-xl mx-auto flex gap-2">
+        <div className="mt-8 max-w-xl mx-auto flex flex-wrap gap-2">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by name, roll no, school, area..."
+            placeholder="Search by name..."
             className="flex-1 p-3 border rounded-xl"
           />
           <button
             onClick={handleSearch}
-            className="px-6 bg-yellow-500 text-white rounded-xl cursor-pointer hover:bg-yellow-600 transition duration-300"
+            className="px-6 py-3 w-full md:w-fit bg-yellow-500 text-white rounded-xl cursor-pointer hover:bg-yellow-600 transition duration-300"
           >
             Search
           </button>
@@ -84,24 +85,28 @@ export default function LandingPage() {
 
         {/* STATS */}
         <div className="mt-8 flex justify-center gap-6 flex-wrap">
-          <div className="px-6 py-4 w-full bg-yellow-100 rounded-xl shadow hover:shadow-lg transition duration-300">
+          <Link
+            href="/all"
+            className="px-6 py-4 w-full md:w-fit bg-yellow-100 rounded-xl shadow hover:shadow-lg transition duration-300"
+          >
             <p className="text-sm text-gray-700">Total Registrations</p>
             <p className="text-2xl font-bold text-yellow-800">
               {animatedTotal}
             </p>
-          </div>
+          </Link>
 
           {categories.map((cat) => (
-            <div
+            <Link
+              href={`/${cat.slug}`}
               key={cat.slug}
-              className="px-6 py-4 rounded-xl shadow text-center transition duration-300
+              className="px-6 py-4 rounded-xl w-full md:w-fit shadow text-center transition duration-300
                          bg-yellow-200 hover:bg-yellow-300 hover:text-yellow-900 hover:shadow-lg"
             >
               <p className="text-sm font-semibold">{cat.name}</p>
               <p className="text-2xl font-bold">
                 {animatedCategoryCounts[cat.slug] || 0}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
 

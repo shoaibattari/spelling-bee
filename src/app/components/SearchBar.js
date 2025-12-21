@@ -8,7 +8,7 @@ export default function SearchBar({ value, onChange }) {
     <div className="relative w-full mb-4">
       <input
         type="text"
-        placeholder="Search any field..."
+        placeholder="Search by name..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full p-3 pr-10 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"

@@ -1,6 +1,6 @@
 export default function EntryPass({ student }) {
   return (
-    <div className="p-6 w-[350px] border rounded-xl text-sm">
+    <div className="p-6 w-87.5 border rounded-xl text-sm">
       <h2 className="text-xl font-bold text-center mb-4">
         🐝 Spelling Bee Entry Pass
       </h2>

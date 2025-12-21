@@ -4,29 +4,31 @@ export default function EntryPassImage({ student }) {
   return (
     <div
       id={`entry-pass-${student.id}`}
-      className="w-90 h-130 p-6 rounded-2xl
-      bg-linear-to-br from-yellow-200 via-yellow-100 to-white
-      text-gray-900 border-4 border-yellow-500"
+      className="w-[360px] h-[420px] mx-auto p-5 rounded-2xl
+      bg-gradient-to-br from-yellow-200 via-yellow-100 to-white
+      text-gray-900 border-4 border-yellow-500 flex flex-col"
     >
-      {" "}
-      <div className="flex items-center mb-4">
-        {/* Logo on the left */}
-        <div className="w-20 h-6 relative mr-4">
-          <Image
-            src="/omj-logo.png"
-            alt="OMJ Logo"
-            fill
-            style={{ objectFit: "contain" }}
-          />
-        </div>
-
-        {/* Title and subtitle on the right */}
-        <div className="flex flex-col ">
-          <h2 className="text-2xl font-extrabold">🐝 Spelling Bee</h2>
-          <p className="text-base ml-5 text-gray-700">Official Entry Pass</p>
-        </div>
+      {/* HEADER IMAGE */}
+      <div className="relative w-full h-20 mb-3 flex justify-center">
+        <Image
+          src="/header.jpg"
+          alt="OMJ Logo"
+          fill
+          className="object-contain"
+          priority
+        />
       </div>
-      <div className="space-y-2 text-sm">
+
+      {/* TITLE */}
+      <h2 className="text-center text-lg font-extrabold mb-3">
+        🐝 Spelling Bee Entry Pass
+      </h2>
+
+      {/* STUDENT INFO */}
+      <div className="space-y-1 text-sm flex-1">
+        <h2 className="text-center text-lg font-extrabold ">
+          🐝 {student.category}
+        </h2>
         <p>
           <b>Name:</b> {student.studentName}
         </p>
@@ -46,7 +48,9 @@ export default function EntryPassImage({ student }) {
           <b>Area:</b> {student.area}
         </p>
       </div>
-      <div className="absolute bottom-6 left-0 right-0 text-center text-xs">
+
+      {/* FOOTER NOTE */}
+      <div className="text-xs text-center text-gray-600 mt-3">
         Please bring this entry pass on competition day
       </div>
     </div>
