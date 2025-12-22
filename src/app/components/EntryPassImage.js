@@ -4,12 +4,12 @@ export default function EntryPassImage({ student }) {
   return (
     <div
       id={`entry-pass-${student.id}`}
-      className="w-full h-[420px] mx-auto p-5 rounded-2xl bg-[url('/bg.jpeg')] bg-cover bg-center
-      bg-gradient-to-br from-yellow-200 via-yellow-100 to-white
+      className="w-full h-fit mx-auto px-5 pb-3 rounded-2xl bg-[url('/bg.jpeg')] bg-cover bg-center
+      bg-linear-to-br from-yellow-200 via-yellow-100 to-white
       text-gray-900 border-4 border-yellow-500 flex flex-col"
     >
       {/* HEADER IMAGE */}
-      <div className="relative w-full h-20 mb-3 flex justify-center">
+      <div className="relative w-full h-28 mx-auto mb-1 flex justify-center">
         <Image
           src="/header.jpg"
           alt="OMJ Logo"
@@ -20,13 +20,13 @@ export default function EntryPassImage({ student }) {
       </div>
 
       {/* TITLE */}
-      <h2 className="text-center text-lg font-extrabold mb-3">
+      <h2 className="text-center text-lg font-extrabold">
         🐝 Spelling Bee Entry Pass
       </h2>
 
       {/* STUDENT INFO */}
       <div className="space-y-1 text-sm flex-1">
-        <h2 className="text-center text-lg font-extrabold ">
+        <h2 className="text-center text-lg font-extrabold px-2 py-1.5 mt-0.5 bg-amber-300 rounded-md w-fit mx-auto ">
           🐝 {student.category}
         </h2>
         <p>
@@ -56,8 +56,14 @@ export default function EntryPassImage({ student }) {
       </div>
 
       {/* FOOTER NOTE */}
-      <div className="text-xs text-center text-gray-600 mt-3">
-        Please bring this entry pass on competition day
+      <div className="px-2 py-1.5 mt-2 bg-amber-300 rounded-md">
+        <p className="text-sm text-center text-black mt-1">
+          Please bring this entry pass on audition day
+        </p>
+        <p className="text-base font-bold text-center text-black max-w-64 mx-auto mt-1 capitalize">
+          The audition will be held on 25th december 2025 at Husein ibrahim
+          sports complex & Community center, F.B.area karachi.
+        </p>
       </div>
     </div>
   );

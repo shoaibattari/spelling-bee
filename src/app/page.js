@@ -73,7 +73,7 @@ export default function LandingPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name..."
-            className="flex-1 p-3 border rounded-xl"
+            className="flex-1 p-3 border rounded-xl bg-white border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
           <button
             onClick={handleSearch}
@@ -121,7 +121,7 @@ export default function LandingPage() {
 
           <Link
             href={`/${categories[0].slug}`}
-            className="px-6 py-3 border border-yellow-500 rounded-xl hover:bg-yellow-500 hover:text-white transition cursor-pointer"
+            className="px-6 py-3 border bg-white border-yellow-500 rounded-xl hover:bg-yellow-500 hover:text-white transition cursor-pointer"
           >
             Browse Categories
           </Link>
@@ -153,8 +153,18 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t py-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} Spelling Bee Competition
+      <footer className="border-t py-6 text-center text-sm bg-black text-gray-50">
+        <p>
+          App Created:{" "}
+          <a
+            className="font-semibold underline"
+            href="https://wa.me/+923313416850"
+            target="_blank"
+          >
+            Shoaib Abdul Sattar Khosa{" "}
+          </a>
+        </p>
+        <p>© {new Date().getFullYear()} Spelling Bee Competition</p>
       </footer>
     </div>
   );

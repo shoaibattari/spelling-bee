@@ -24,6 +24,9 @@ export default async function CategoryPage({ params }) {
   }
 
   const categoryName = categoryObj.name;
-
-  return <CategoryPageClient categoryName={categoryName} />;
+  return (
+    <div className="bg-[url('/bg.jpeg')] bg-repeat w-full min-h-screen">
+      <CategoryPageClient categoryName={categoryName} />
+    </div>
+  );
 }
