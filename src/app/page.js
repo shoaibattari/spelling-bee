@@ -57,7 +57,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-yellow-50 to-white">
+    <div className="min-h-screen bg-[url('/bg.jpeg')] bg-cover bg-cente bg-no-repeat bg-linear-to-br from-yellow-50 to-white">
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 py-20 text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold">

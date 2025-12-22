@@ -6,7 +6,11 @@ export default function StudentCard({ student, highlight }) {
     <div
       className={`p-4 rounded-xl border shadow-sm relative transition-all duration-300
         flex flex-col justify-between h-full
-        ${highlight ? "bg-yellow-100 border-yellow-400 hover:bg-yellow-200" : "bg-white border-gray-200 hover:bg-gray-50"}
+        ${
+          highlight
+            ? "bg-yellow-100 border-yellow-400 hover:bg-yellow-200"
+            : "bg-white border-gray-200 hover:bg-gray-50"
+        }
         hover:shadow-lg`}
     >
       <div>
@@ -17,14 +21,25 @@ export default function StudentCard({ student, highlight }) {
 
         {/* Student Info */}
         <p className="text-gray-700 mb-1">
-          Roll No: <span className="font-bold text-lg">{student.rollNumber}</span>
+          Roll No:{" "}
+          <span className="font-bold text-lg">{student.rollNumber || "-"}</span>
         </p>
-        <p className="text-gray-700 mb-1">Father: {student.fatherName}</p>
-        <p className="text-gray-700 mb-1">Category: {student.category}</p>
-        <p className="text-gray-700 mb-1">School: {student.nameOfSchool}</p>
+        <p className="text-gray-700 mb-1">
+          Father: {student.fatherName || "-"}
+        </p>
+        <p className="text-gray-700 mb-1">
+          Category: {student.category || "-"}
+        </p>
+        <p className="text-gray-700 mb-1">Age: {student.age || "-"}</p>
+        <p className="text-gray-700 mb-1">
+          Community: {student.khundiWithGroup || "-"}
+        </p>
+        <p className="text-gray-700 mb-1">
+          School: {student.nameOfSchool || "-"}
+        </p>
 
         {/* Hidden Entry Pass */}
-        <div className="absolute -left-[9999px] top-0">
+        <div className="absolute -left-2499.75 top-0">
           <EntryPassImage student={student} />
         </div>
       </div>

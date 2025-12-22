@@ -27,11 +27,21 @@ body {
 
 /* ---- Bee Animation ---- */
 @keyframes beeFlight {
-  0%   { transform: translate(0, 0) rotate(0deg); }
-  25%  { transform: translate(3px, -5px) rotate(15deg); }
-  50%  { transform: translate(6px, 0px) rotate(-10deg); }
-  75%  { transform: translate(3px, 5px) rotate(10deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(3px, -5px) rotate(15deg);
+  }
+  50% {
+    transform: translate(6px, 0px) rotate(-10deg);
+  }
+  75% {
+    transform: translate(3px, 5px) rotate(10deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
 }
 
 .animate-bee {
