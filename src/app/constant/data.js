@@ -12247,3 +12247,10 @@ export const categories = [
   { name: "Skilled Bees", slug: "skilled-bees" },
   { name: "Master Bees", slug: "master-bees" },
 ];
+
+export const rules = [
+  { name: "Junior Bees", slug: "junior-bees", image: "/jbRules.jpeg" },
+  { name: "Rising Bees", slug: "rising-bees", image: "/rbRules.jpeg" },
+  { name: "Skilled Bees", slug: "skilled-bees", image: "/sbRules.jpeg" },
+  { name: "Master Bees", slug: "master-bees", image: "/mbRules.jpeg" },
+];

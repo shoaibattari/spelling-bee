@@ -51,7 +51,7 @@ export default function AllStudentsClient() {
     <div className="max-w-5xl mx-auto p-6">
       <h1 className="text-2xl md:text-3xl font-extrabold mb-4 text-yellow-800 border-b-4 border-yellow-500 pb-2 flex items-center gap-3">
         <button
-          onClick={() => router.push("/")}
+           onClick={() => router.back()}
           className="p-1 rounded-full bg-yellow-500 hover:bg-yellow-700 cursor-pointer transition"
           aria-label="Go back"
         >
