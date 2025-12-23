@@ -164,6 +164,7 @@ export default function LandingPage() {
             Shoaib Abdul Sattar Khosa{" "}
           </a>
         </p>
+        <p>Vice Chairman (OMJ IT Committee)</p>
         <p>© {new Date().getFullYear()} Spelling Bee Competition</p>
       </footer>
     </div>

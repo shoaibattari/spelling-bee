@@ -61,7 +61,7 @@ export default function EntryPassImage({ student }) {
           Please bring this entry pass on audition day
         </p>
         <p className="text-base font-bold text-center text-black max-w-64 mx-auto mt-1 capitalize">
-          The audition will be held on 25th december 2025 at Husein ibrahim
+          The audition will be held on 25th december 2025 at Husein Ebrahim
           sports complex & Community center, F.B.area karachi.
         </p>
       </div>
